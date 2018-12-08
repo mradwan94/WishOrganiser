@@ -1,2 +1,2 @@
 # WishOrganiser
-Sorting Wish product by price
+Sorting Wish products by price
