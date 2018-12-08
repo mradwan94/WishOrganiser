@@ -8,7 +8,7 @@ for(var i=0;i<x.length;i++){
 	var y=x[i].innerText;
 	var ImageUrl=Images[i].getAttribute("style").slice(23,-3);
 	
-	if(y=="free" || y=="Ingyenes"){
+	if(y=="Free" || y=="Ingyenes"){
 		//prices.unshift(y);
 		prices[i]=0;
 	}
