@@ -1,0 +1,62 @@
+var prices={};
+var pairs=[];
+var els = [];
+var x=document.getElementsByClassName("FeedItemV2__ActualPrice-vf3155-8 iysIiX  ");
+var Images=document.getElementsByClassName("FeedItemV2__Image-vf3155-1 jnFETX  ");
+for(var i=0;i<x.length;i++){
+	var y=x[i].innerText;
+	var ImageUrl=Images[i].getAttribute("style").slice(23,-3);
+	y = y.match(/\d/g);
+	prices[i] = y.join("")
+	
+	var a = document.getElementsByClassName("FeedItemV2__ActualPrice-vf3155-8 iysIiX")[i];
+	
+	while (a) {
+   		 els.unshift(a);
+    		a = a.parentNode;
+	}
+	pairs[i]=[prices[i],els[13].getAttribute("href"),ImageUrl];
+}
+
+
+
+pairs=pairs.sort(function(a,b){
+    return a[0] - b[0];
+});
+
+for(var j=0;j<pairs.length;j++){
+	pairs[j][1]="https://www.wish.com"+pairs[j][1];
+
+
+}
+
+for(var k=0;k<pairs.length;k++){
+	console.log(pairs[k][0]);
+	console.log(pairs[k][1]);
+	
+
+
+}
+document.body.innerHTML = "";
+
+for(var i=0;i<pairs.length;i++){
+	var myImage = new Image(200,200);
+	myImage.src = pairs[i][2];
+	document.body.appendChild(myImage);
+	var newDiv = document.createElement("div"); 
+	newDiv.innerHTML=pairs[i][0];//+"\n"+<a href=pairs[i][1]>pairs[i][1]</a>";
+	newDiv.innerHTML+="\n";
+	var aTag = document.createElement('a');
+	aTag.setAttribute('href',pairs[i][1]);
+	aTag.innerHTML = pairs[i][1];
+	newDiv.appendChild(aTag);
+	document.body.appendChild(newDiv);
+
+
+}
+
+
+
+
+
+
