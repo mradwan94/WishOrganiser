@@ -1,14 +1,22 @@
-var prices={};
+var prices=[];
 var pairs=[];
 var els = [];
+var freeList=[];
 var x=document.getElementsByClassName("FeedItemV2__ActualPrice-vf3155-8 iysIiX  ");
 var Images=document.getElementsByClassName("FeedItemV2__Image-vf3155-1 jnFETX  ");
 for(var i=0;i<x.length;i++){
 	var y=x[i].innerText;
 	var ImageUrl=Images[i].getAttribute("style").slice(23,-3);
-	y = y.match(/\d/g);
-	prices[i] = y.join("")
 	
+	if(y=="free" || y=="Ingyenes"){
+		//prices.unshift(y);
+		prices[i]=0;
+	}
+	else{
+		y = y.match(/\d/g);
+		prices[i] = y.join("");
+		//prices.push(y.join(""));
+	}
 	var a = document.getElementsByClassName("FeedItemV2__ActualPrice-vf3155-8 iysIiX")[i];
 	
 	while (a) {
@@ -21,6 +29,7 @@ for(var i=0;i<x.length;i++){
 
 
 pairs=pairs.sort(function(a,b){
+
     return a[0] - b[0];
 });
 
